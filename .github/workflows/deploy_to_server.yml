@@ -21,5 +21,6 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}       # SSH private key (add to GitHub secrets)
         port: 22                              # SSH port
         script: |
-          cd /path/to/your/repo
+          git clone https://github.com/thimithagamage/test-react-app.git
+          cd /test-react-app
           git pull origin main
