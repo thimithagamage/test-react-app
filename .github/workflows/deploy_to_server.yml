@@ -22,17 +22,6 @@ jobs:
         port: 22                              # SSH port
         script: |
           echo "Attempting to connect to EC2 and pull the repository..."
-          if [ ! -d "test-react-app.git" ]; then
-            git clone https://github.com/thimithagamage/test-react-app.git
-            ls -l
-            cd test-react-app/react-app
-            npm install
-            npm run dev
-          else
-            ls -l
-            cd test-react-app
-            git pull origin main
-            cd react-app
-            npm install
-            npm run dev
-          fi
+          git clone https://github.com/thimithagamage/test-react-app.git
+          ls -l
+
