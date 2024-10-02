@@ -21,13 +21,13 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}       #SSH private key (add to GitHub secrets)
         port: 22                              # SSH port
         script: |
-          git clone 
-          cd test-react-app
-          git pull origin main
           echo "Attempting to connect to EC2 and pull the repository..."
           if [ ! -d "test-react-app.git" ]; then
             git clone https://github.com/thimithagamage/test-react-app.git
             ls -l
+            cd test-react-app/react-app
+            npm install
+            npm run dev
           else
             ls -l
             cd test-react-app
