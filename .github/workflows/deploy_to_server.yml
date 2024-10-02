@@ -19,7 +19,7 @@ jobs:
         host: ${{ secrets.SSH_HOST }}         #Your EC2 instance public IP
         username: ${{ secrets.USER_NAME }}     # EC2 username (e.g., ubuntu or ec2-user)
         key: ${{ secrets.SSH_PRIVATE_KEY }}       #SSH private key (add to GitHub secrets)
-        port: 22                              # SSH port
+        port: 22                              # SSH port***
         script: |
           echo "Attempting to connect to EC2 and pull the repository..."
           git clone https://github.com/thimithagamage/test-react-app.git
