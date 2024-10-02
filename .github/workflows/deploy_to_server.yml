@@ -23,5 +23,9 @@ jobs:
         script: |
           echo "Attempting to connect to EC2 and pull the repository..."
           git clone https://github.com/thimithagamage/test-react-app.git
-          ls -l
+          cd test-react-app
+          git checkout develop
+          cd react-app
+          npm install
+          npm run dev
 
