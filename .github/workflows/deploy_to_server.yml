@@ -1,31 +1,25 @@
-name: Deploy React Project to Running EC2
+name: Deploy to EC2
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main  # Trigger the action when code is pushed to the `main` branch.
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    - name: Checkout the repository
+      uses: actions/checkout@v3
 
-      - name: Connect to EC2 instance using SSH
-        env:
-            PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        run: |
-          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-          ssh -i private_key ubuntu@${{ secrets.SSH_HOST }}
-
-      - name: Install dependencies
-        run: |
-          sudo apt update
-          sudo apt install -y nodejs npm
-          cd test-react-project/react-app
-          npm install
-
-      - name: Build and run React app
-        run: |
-          npm run dev
+    - name: SSH and pull code to EC2
+      uses: appleboy/ssh-action@v0.1.3
+      with:
+        host: ${{ secrets.EC2_HOST }}         # Your EC2 instance public IP
+        username: ${{ secrets.EC2_USER }}     # EC2 username (e.g., ubuntu or ec2-user)
+        key: ${{ secrets.EC2_SSH_KEY }}       # SSH private key (add to GitHub secrets)
+        port: 22                              # SSH port
+        script: |
+          cd /path/to/your/repo
+          git pull origin main
