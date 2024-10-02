@@ -16,9 +16,9 @@ jobs:
     - name: SSH and pull code to EC2
       uses: appleboy/ssh-action@v0.1.3
       with:
-        host: ${{ secrets.EC2_HOST }}         # Your EC2 instance public IP
-        username: ${{ secrets.EC2_USER }}     # EC2 username (e.g., ubuntu or ec2-user)
-        key: ${{ secrets.EC2_SSH_KEY }}       # SSH private key (add to GitHub secrets)
+        host: ${{ secrets.SSH_HOST }}         # Your EC2 instance public IP
+        username: ${{ secrets.USERNAME }}     # EC2 username (e.g., ubuntu or ec2-user)
+        key: ${{ secrets.SSH_KEY }}       # SSH private key (add to GitHub secrets)
         port: 22                              # SSH port
         script: |
           cd /path/to/your/repo
