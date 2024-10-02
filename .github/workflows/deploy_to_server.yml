@@ -12,11 +12,6 @@ jobs:
     steps:
     - name: Checkout the repository
       uses: actions/checkout@v3
-      
-    - name: Setup SSH
-      uses: webfactory/ssh-agent@v0.5.4
-      with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
         
     - name: SSH and pull code to EC2
       uses: appleboy/ssh-action@v0.1.3
